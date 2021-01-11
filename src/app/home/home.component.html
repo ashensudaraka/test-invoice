@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <a class="navbar-brand"><i class="fas fa-th-large"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sales</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                    <a class="dropdown-item" routerLink="/home/invoice">New Invoice</a>
+                    <a class="dropdown-item">Sales Item 1</a>
+                    <a class="dropdown-item">Sales Item 2</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                    <a class="dropdown-item">Clients Item 1</a>
+                    <a class="dropdown-item">Clients Item 2</a>
+                    <a class="dropdown-item">Clients Item 3</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                    <a class="dropdown-item">Products Item 1</a>
+                    <a class="dropdown-item">Products Item 2</a>
+                    <a class="dropdown-item">Products Item 3</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+                    <a class="dropdown-item">Template 1</a>
+                    <a class="dropdown-item">Template 2</a>
+                    <a class="dropdown-item">Template 3</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink5">
+                    <a class="dropdown-item">Item 1</a>
+                    <a class="dropdown-item">Item 2</a>
+                    <a class="dropdown-item">Item 3</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" id="navbarDropdownMenuLink6">Reports</a>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+
+
+<!--Place of components-->
+<router-outlet></router-outlet>

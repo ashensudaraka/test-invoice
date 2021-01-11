@@ -1,0 +1,490 @@
+<!--Heading row-->
+<div class="container-fluid headingRow">
+    <div class="row">
+        <div class="col-10" style="padding-top: 20px;">
+            <p class="headingName">New Invoice</p>
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <label class="label" for="invoiceLayout">Invoice Layout</label>
+                <select class="form-control form-control-sm" id="invoiceLayout">
+                    <option>Default Invoice Layout</option>
+                    <option>Type1 Invoice Layout</option>
+                    <option>Type2 Invoice Layout</option>
+                    <option>Type3 Invoice Layout</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="defaultInvoiceLayout container-fluid">
+    <div class="form-row">
+
+        <!--First column of layout-->
+        <div class="col-6">
+
+            <div class="card1 container-fluid">
+                <div class="form-inline">
+                    <label class="label" style="font-weight: 550;" for="methods" class="col-sm-2 col-form-label col-form-label-sm">Method:</label>
+                    <select class="form-control form-control-sm" id="methods" [(ngModel)]="methods">
+                            <option value="Email">Send via Email</option>
+                            <option value="Whatsapp">Send via Whatsapp</option>
+                            <option value="Viber">Send via Viber</option>
+                            <option value="Messenger">Send via Messenger</option>
+                        </select>
+                    <label class="questionMarkIcon" for="methods" data-toggle="tooltip" title="Select a method to send invoice."><i class="fas fa-question-circle"></i></label>
+                </div>
+            </div>
+
+            <div class="card2 container-fluid">
+                <p class="headingName">Cliend Details</p>
+
+                <form name="form" (ngSubmit)="f.form.valid && saveClientDetails()" #f="ngForm" novalidate>
+
+                    <div class="form-group">
+                        <label class="label" for="inlineRadioOptions">Type</label>
+                        <div id="inlineRadioOptions">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="individual" [(ngModel)]="model.type">
+                                <label class="form-check-label" for="inlineRadio1">Individual</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="business" [(ngModel)]="model.type">
+                                <label class="form-check-label" for="inlineRadio2">Business</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="businessName">Business Name <span class="questionMarkIcon" for="methods" data-toggle="tooltip" title="Type a business name"><i class="fas fa-question-circle"></i></span></label>
+                        <input type="text" class="form-control form-control-sm" id="businessName" name="businessName" [(ngModel)]="model.businessName" #businessName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && businessName.invalid }" required>
+                        <div *ngIf="f.submitted && businessName.invalid" class="invalid-feedback">
+                            <div *ngIf="businessName.errors.required">Business name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="firstName">First Name</label>
+                                <input type="text" class="form-control form-control-sm" id="firstName" name="firstName" [(ngModel)]="model.firstName">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="lastName">Last Name</label>
+                                <input type="text" class="form-control form-control-sm" id="lastName" name="lastName" [(ngModel)]="model.lastName">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="email">Email</label>
+                                <input type="email" class="form-control form-control-sm" id="email" name="email" [(ngModel)]="model.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required pattern="^\s*[\w-]+[\.]{0,1}[\w-]*@([\w-]+\.)+[\w-]{2,4}\s*$">
+                                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                    <div *ngIf="email.errors.required">Email is required</div>
+                                    <div *ngIf="email.errors.pattern">Email is invalid</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="streetAddress">Street Address</label>
+                                <input type="text" class="form-control form-control-sm" id="streetAddress" name="streetAddress" [(ngModel)]="model.streetAddress">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="addressLine2">Address Line 2</label>
+                                <input type="text" class="form-control form-control-sm" id="addressLine2" name="addressLine2" [(ngModel)]="model.addressLine2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="label" for="city">City</label>
+                                <input type="text" class="form-control form-control-sm" id="city" name="city" [(ngModel)]="model.city">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="label" for="state">State/Province</label>
+                                <input type="text" class="form-control form-control-sm" id="state" name="state" [(ngModel)]="model.state">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="label" for="postal">Postal/Zip Code</label>
+                                <input type="text" class="form-control form-control-sm" id="postal" name="postal" [(ngModel)]="model.postal">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="telephone">Telephone</label>
+                                <input type="text" class="form-control form-control-sm" id="telephone" name="telephone" [(ngModel)]="model.telephone">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label" for="mobile">Mobile</label>
+                                <input type="text" class="form-control form-control-sm" id="mobile" name="mobile" [(ngModel)]="model.mobile">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="country">Country</label>
+                        <select class="form-control form-control-sm" id="country" name="country" [(ngModel)]="model.country">
+                            <option>(Select Country)</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="India">India</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="USA">USA</option>
+                        </select>
+                    </div>
+
+                    <div class="form-check form-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="addShipingAddress" name="addShipingAddress" [(ngModel)]="model.addShipingAddress">
+                        <label class="form-check-label label" for="addShipingAddress">
+                          Add Shipping Address <span class="questionMarkIcon" for="methods" data-toggle="tooltip" title="Do you want to add shipping address?"><i class="fas fa-question-circle"></i></span>
+                        </label>
+                    </div>
+
+                    <div class="buttonArea1">
+                        <button type="reset" class="btn btn-light cancelBtn">Cancel</button>
+                        <button type="submit" class="btn btn-success">Save Client</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+        <!--Second column of layout-->
+        <div class="col-6">
+            <table class="table table-bordered table-sm card3">
+                <tr>
+                    <td class="label invoiceLabel">Invoice Number</td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="invoiceNumber" id="invoiceNumber">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label invoiceLabel">Invoice Date</td>
+                    <td>
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input class="form-control form-control-sm" id="invoiceDateFormat" name="invoiceDateFormat" [(ngModel)]="invoiceDateFormat" ngbDatepicker #d1="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-sm calendar" (click)="d1.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label invoiceLabel">Issue Date<span class="questionMarkIcon" data-toggle="tooltip" title="Select issue date"><i class="fas fa-question-circle"></i></span></td>
+                    <td>
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input class="form-control form-control-sm" id="issueDateFormat" name="issueDateFormat" [(ngModel)]="issueDateFormat" ngbDatepicker #d2="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-sm calendar" (click)="d2.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label invoiceLabel">Payment Terms<span class="questionMarkIcon" title="How many days?"><i class="fas fa-question-circle"></i></span></td>
+                    <td>
+                        <div class="form-inline">
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="paymentTerms" id="paymentTerms">
+                            <label for="paymentTerms" style="margin-left: 5px;">days</label>
+                        </div>
+
+                    </td>
+                </tr>
+
+                <tr *ngFor="let field of invoiceFieldArray; let i = index">
+                    <td>
+                        <div class="form-inline">
+                            <input class="form-control form-control-sm" type="text" [(ngModel)]="field.label" name="{{field.label}}" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-inline">
+                            <input class="form-control form-control-sm" type="text" [(ngModel)]="field.description" name="{{field.description}}" />
+                            <button class="btn btn-default" type="button" (click)="deleteInvoiceFieldValue(i)" style="color: #d9534f;"><i class="fas fa-lg fa-window-close"></i></button>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <tr *ngFor="let j = index">
+
+                    <td>
+                        <input class="form-control form-control-sm" type="text" id="newInvoiceAttributeLabel" [(ngModel)]="invoiceNewAttribute.label" name="newInvoiceAttributeLabel" />
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="text" id="newInvoiceAttributeDesc" [(ngModel)]="invoiceNewAttribute.description" name="newInvoiceAttributeDesc" />
+                    </td>
+
+                    <td>
+                        <button class="btn btn-default" type="button" (click)="deleteInvoiceNewFieldValue(j)" style="color: #d9534f;"><i class="fas fa-lg fa-window-close"></i></button>
+                    </td>
+
+                </tr>
+
+            </table>
+            <button class="addBtn" (click)="addInvoiceFieldValue()"><i class="fas fa-plus"></i></button>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <!--Item list table-->
+    <table class="table table-striped table-bordered table-sm">
+        <thead>
+            <tr>
+                <th style="width: 40px;"></th>
+                <th>Item</th>
+                <th>Description</th>
+                <th style="width: 100px;">Unit Price</th>
+                <th style="width: 100px;">Quantity</th>
+                <th style="width: 120px;">Tax 1</th>
+                <th style="width: 100px;">Subtotal</th>
+                <th style="width: 50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let field of fieldArray; let i = index">
+                <td></td>
+                <td class="tableData">
+                    <select [(ngModel)]="field.item" class="form-control form-control-sm" name="{{field.item}}">
+                        <option value="item1">Item 1</option>
+                        <option value="item2">Item 2</option>
+                        <option value="item3">Item 3</option>
+                        <option value="item4">Item 4</option>
+                    </select>
+                </td>
+                <td class="tableData">
+                    <input [(ngModel)]="field.description" class="form-control form-control-sm" type="text" name="{{field.description}}" />
+                </td>
+                <td class="tableData">
+                    <input [(ngModel)]="field.unitPrice" class="form-control form-control-sm" type="text" name="{{field.unitPrice}}" placeholder="Unit Price" />
+                </td>
+                <td class="tableData">
+                    <input [(ngModel)]="field.quantity" class="form-control form-control-sm" type="text" name="{{field.quantity}}" placeholder="Quantity" />
+                </td>
+                <td class="tableData">
+                    <select [(ngModel)]="field.tax1" class="form-control form-control-sm" name="{{field.tax1}}">
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>
+                    </select>
+                </td>
+                <td>
+                    <input [(ngModel)]="field.subTotal" class="form-control form-control-sm" type="text" name="{{field.subTotal}}" value="Rs.0.00" />
+                </td>
+                <td>
+                    <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)" style="color: #d9534f;"><i class="fas fa-lg fa-window-close"></i></button>
+                </td>
+            </tr>
+
+            <tr *ngFor="let j = index">
+                <td></td>
+                <td class="tableData">
+                    <select class="form-control form-control-sm" id="newAttributeItem" [(ngModel)]="newAttribute.item" name="newAttributeItem">
+                        <option value="item1">Item 1</option>
+                        <option value="item2">Item 2</option>
+                        <option value="item3">Item 3</option>
+                        <option value="item4">Item 4</option>
+                    </select>
+                </td>
+                <td class="tableData">
+                    <input class="form-control form-control-sm" type="text" id="newAttributeDescription" [(ngModel)]="newAttribute.description" name="newAttributeDescription" />
+                </td>
+                <td class="tableData">
+                    <input class="form-control form-control-sm" type="text" id="newAttributeUnitPrice" [(ngModel)]="newAttribute.unitPrice" name="newAttributePrice" placeholder="Unit Price" />
+                </td>
+                <td class="tableData">
+                    <input class="form-control form-control-sm" type="text" id="newAttributeQuantity" [(ngModel)]="newAttribute.quantity" name="newAttributeQuantity" placeholder="Quantity" />
+                </td>
+                <td class="tableData">
+                    <select class="form-control form-control-sm" id="newAttributeTax1" [(ngModel)]="newAttribute.tax1" name="newAttributeTax1">
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>
+                    </select>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" id="newAttributeSubTotal" [(ngModel)]="newAttribute.subTotal" name="newAttributeSubTotal" value="Rs.0.00" />
+                </td>
+                <td>
+                    <button class="btn btn-default" type="button" (click)="deleteNewFieldValue(j)" style="color: #d9534f;"><i class="fas fa-lg fa-window-close"></i></button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-7">
+            <div class="btn-group" style="margin-top: -15px;">
+                <button type="button" class="btn btn-success active" (click)="addFieldValue()"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-success" (click)="addFieldValue()">Add New Line</button>
+            </div>
+        </div>
+        <div class="col-5">
+            <table class="table table-striped table-bordered" style="margin-top: -15px;">
+                <tr>
+                    <th style="text-align: right;">Items Total</th>
+                    <td style="width: 150px;">Rs.0.00</td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;">Total</th>
+                    <td>Rs.0.00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <hr class="hr2">
+
+    <div class="form-check form-inline">
+        <input class="form-check-input" type="checkbox" value="" id="alreadyPaid">
+        <label class="form-check-label" for="alreadyPaid">
+          Already Paid? <span class="questionMarkIcon" for="methods" data-toggle="tooltip" title="Did you already pay?"><i class="fas fa-question-circle"></i></span>
+        </label>
+    </div>
+
+    <hr>
+
+
+
+    <tr class="buttonGroup1">
+        <td>
+            <button type="button" class="btn btn-primary" (click)="getInvoiceDetails()" data-toggle="modal" data-target="#invoiceModal"><span style="padding-right: 4px;"><i class="far fa-eye"></i></span>Preview</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-light">Save as Draft</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-success"><span style="padding-right: 4px;"><i class="fas fa-check"></i></span>Save & Send Email</button>
+        </td>
+    </tr>
+
+    <br>
+
+    <div class="form-check form-inline">
+        <input class="form-check-input" type="checkbox" value="" id="saveAsPrefilled">
+        <label class="form-check-label" for="saveAsPrefilled">
+          Save as Pre-filled invoice template <span class="questionMarkIcon" for="methods"><i class="fas fa-question-circle"></i></span>
+        </label>
+    </div>
+
+    <br>
+
+</div>
+
+
+<!-- Preview Modal -->
+<div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="invoiceContent" #invoiceContent>
+                    <h3 style="text-align: center;">INVOICE</h3>
+                    <hr>
+                    <!--Address-->
+                    <p><span style="font-size: 16px; font-weight: 550;">{{ model.businessName }}</span> <br> {{ model.streetAddress }}, {{ model.addressLine2 }}, <br> {{ model.city }}, {{ model.state }}, {{ model.postal }}, <br> {{ model.country }}</p>
+
+                    <!--Invoice details-->
+                    <table class="invoiceTable">
+                        <tr>
+                            <th>Invoice Number</th>
+                            <td>{{ invoiceNumber }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Invoice Date</th>
+                            <td>{{ invoiceDate }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Issue Date</th>
+                            <td>{{ issueDate }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Payment Terms</th>
+                            <td>{{ paymentTerms }} days</td>
+                        </tr>
+
+                    </table>
+
+                    <br>
+
+                    <table class="itemTable">
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Unit Price</th>
+                            <th>Quantity</th>
+                            <th>Tax</th>
+                            <th>Subtotal</th>
+                        </tr>
+
+                        <tr *ngFor="let data of fieldArray; let i = index">
+                            <td>{{ data.item }}</td>
+                            <td>{{ data.description }}</td>
+                            <td>{{ data.unitPrice }}</td>
+                            <td>{{ data.quantity }}</td>
+                            <td>{{ data.tax1 }}</td>
+                            <td>{{ data.subTotal }}</td>
+                        </tr>
+
+                        <tfoot>
+                            <tr>
+                                <td>Item Total</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save as PDF</button>
+            </div>
+        </div>
+    </div>
+</div>

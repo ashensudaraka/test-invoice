@@ -1,0 +1,166 @@
+.container-fluid {
+    font-size: 14px;
+    color: #2f2f2f;
+}
+
+.headingRow {
+    background-color: white;
+    padding-top: 10px;
+}
+
+.headingName {
+    color: #696969;
+    font-size: 20px;
+}
+
+.defaultInvoiceLayout {
+    margin-top: 25px;
+}
+
+.card1 {
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.card2 {
+    background-color: #fffbe5;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+.card3 {
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.label {
+    font-weight: 550;
+    font-size: 14px;
+}
+
+.buttonArea1 {
+    margin-top: 15px;
+    text-align: right;
+    padding-bottom: 15px;
+}
+
+.cancelBtn {
+    //background-color: #d3d3d3;
+    border: 1px solid #d3d3d3;
+    margin-right: 15px;
+}
+
+#invoiceNumber,
+#paymentTerms {
+    width: 100px;
+}
+
+#invoiceDate,
+#issueDate {
+    width: 140px;
+}
+
+#newAttributeLabel,
+#newAttributeDesc,
+#newInvoiceAttributeLabel,
+#newInvoiceAttributeDesc {
+    width: 220px;
+}
+
+.invoiceLabel {
+    text-align: right;
+}
+
+.addBtn {
+    font-size: 12px;
+    background-color: white;
+    border: 1px solid #d3d3d3;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    position: absolute;
+    margin-top: -14px;
+    cursor: pointer;
+}
+
+.addBtn:active {
+    background-color: #f0f3f4;
+}
+
+.addBtn:focus {
+    outline: none;
+}
+
+hr {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+table {
+    font-size: 14px;
+}
+
+.tableData {
+    background-color: white;
+}
+
+.tableData .form-control {
+    border: 1px solid white;
+}
+
+.hr2 {
+    border-top: 4px solid white;
+    margin-top: -10px;
+}
+
+.buttonGroup1 td {
+    padding-right: 15px;
+}
+
+.buttonGroup1 .btn-light {
+    border: 1px solid #d3d3d3;
+}
+
+.invoiceTable {
+    width: 250px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.invoiceTable,
+.invoiceTable td,
+.invoiceTable th {
+    border: 1px solid black;
+}
+
+.itemTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.itemTable,
+.itemTable td,
+.itemTable th {
+    border: 1px solid black;
+}
+
+.itemTable th {
+    background-color: #d3d3d3;
+}
+
+#invoiceContent {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.questionMarkIcon {
+    color: #2f2f2f;
+    margin-left: 4px;
+}
